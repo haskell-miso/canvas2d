@@ -8,7 +8,7 @@ Demonstrates [miso](https://github.com/dmjio/miso)'s multi-[Canvas](https://hadd
 
 ## Build and run
 
-Install [Nix Flakes](https://nixos.wiki/wiki/Flakes), then:
+Install [Nix Flakes](https://wiki.nixos.org/wiki/Flakes), then:
 
 ```
 nix develop .#wasm
