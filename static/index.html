@@ -4,6 +4,178 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title> miso-canvas2d </title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at 15% 10%, #241a45 0%, transparent 45%),
+          radial-gradient(circle at 85% 0%, #16233f 0%, transparent 40%),
+          #05060f;
+        color: #e6e6f0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+      }
+
+      .app {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 40px 24px 64px;
+      }
+
+      .title {
+        margin: 0 0 28px;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        background: linear-gradient(135deg, #a78bfa, #38bdf8);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .title-emoji {
+        /* Undo the gradient text-clip from .title: color emoji fonts have
+           no single fill path, so clipping them through a text gradient
+           makes browsers fall back to a flat monochrome silhouette. */
+        -webkit-background-clip: initial;
+        background-clip: initial;
+        background: none;
+        color: initial;
+      }
+
+      .title a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 2px solid rgba(167, 139, 250, 0.4);
+      }
+
+      .title a:hover {
+        border-bottom-color: rgba(56, 189, 248, 0.7);
+      }
+
+      .toolbar {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 32px;
+      }
+
+      .btn {
+        cursor: pointer;
+        border: none;
+        border-radius: 999px;
+        padding: 10px 20px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #fff;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+      }
+
+      .btn:active {
+        transform: translateY(0);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #7c6cf0, #4f8cff);
+      }
+
+      .btn-danger {
+        background: linear-gradient(135deg, #ff8a5b, #ff5f6d);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 240px));
+        justify-content: start;
+        gap: 20px;
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        backdrop-filter: blur(14px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      }
+
+      .canvas-stack {
+        position: relative;
+        width: 100%;
+        max-width: 240px;
+        aspect-ratio: 1 / 1;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+      }
+
+      .space-canvas {
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .card-toolbar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .icon-btn {
+        width: 32px;
+        height: 32px;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        color: #e6e6f0;
+        font-size: 18px;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.15s ease, transform 0.15s ease;
+      }
+
+      .icon-btn:hover {
+        background: rgba(255, 255, 255, 0.18);
+        transform: scale(1.08);
+      }
+
+      .planet-count {
+        min-width: 84px;
+        text-align: center;
+        font-size: 13px;
+        color: #9a9ab5;
+        font-variant-numeric: tabular-nums;
+      }
+    </style>
   </head>
   <body>
     <script type="module" src="index.js"></script>
