@@ -26,7 +26,7 @@ jobs:
           name: haskell-miso-cachix
 
       - name: Build using Nix
-        run: nix develop .#wasm --command bash -c "make clean && make"
+        run: nix develop .#ghcjs --command bash -c "make clean && make js"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
