@@ -93,7 +93,7 @@ main = startApp defaultEvents app
 -- (planets, sun, fps badge), cleared to transparent so the background shows
 -- through. Redrawing the static ~90% of the scene 60x/sec was the reason
 -- fps dropped once several cards were on screen at once.
-canvasCard :: Int -> Int -> View context Model Action
+canvasCard :: Int -> Int -> View context props Model Action
 canvasCard cid k =
   div_
   [ class_ "card" ]
