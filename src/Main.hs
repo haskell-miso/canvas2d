@@ -68,7 +68,7 @@ main = startApp defaultEvents app
     app :: App Model Action
     app = component (Model [0] (M.singleton 0 defaultPlanetCount) 1) updateModel viewModel
 
-    viewModel () () Model { _canvases = cs, _planets = ps } =
+    viewModel Model { _canvases = cs, _planets = ps } =
       div_
       [ class_ "app" ]
       [ h1_
@@ -93,7 +93,7 @@ main = startApp defaultEvents app
 -- (planets, sun, fps badge), cleared to transparent so the background shows
 -- through. Redrawing the static ~90% of the scene 60x/sec was the reason
 -- fps dropped once several cards were on screen at once.
-canvasCard :: Int -> Int -> View context Model Action
+canvasCard :: Int -> Int -> View context props Model Action
 canvasCard cid k =
   div_
   [ class_ "card" ]
