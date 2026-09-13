@@ -68,7 +68,7 @@ main = startApp defaultEvents app
     app :: App Model Action
     app = component (Model [0] (M.singleton 0 defaultPlanetCount) 1) updateModel viewModel
 
-    viewModel () () Model { _canvases = cs, _planets = ps } =
+    viewModel Model { _canvases = cs, _planets = ps } =
       div_
       [ class_ "app" ]
       [ h1_
